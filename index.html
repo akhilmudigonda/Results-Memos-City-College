@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Memo - Prank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-section {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .input-section input {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .marks-memo {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .marks-memo h3 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .marks-memo p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .marks-memo table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .marks-memo th, .marks-memo td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .marks-memo th {
+            background-color: #f4f4f4;
+        }
+
+        .result-text {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>GOVT. CITY COLLEGE (AUTONOMOUS)</h1>
+    <h2>Marks Memo</h2>
+</header>
+
+<div class="container">
+    <div class="input-section">
+        <input type="text" id="hallTicket" placeholder="Enter Hall Ticket Number" maxlength="16">
+        <button onclick="generateMarksMemo()" class="submit-btn">Submit</button>
+    </div>
+
+    <div class="marks-memo" id="marksMemo">
+        <h3>SEMESTER GRADE CARD</h3>
+        <p><strong>Course:</strong> M.Sc. Mathematics | Semester July 2025</p>
+        <p><strong>Roll Number:</strong> <span id="rollNumber">1084-24-505-035</span></p>
+        <p><strong>Medium:</strong> English</p>
+        <p><strong>Name:</strong> <span id="studentName">Mudigonda Akhil</span></p>
+        <p><strong>Date:</strong> <span id="currentDate"></span></p>
+
+        <table>
+            <tr>
+                <th>S.No</th>
+                <th>Subject</th>
+                <th>Credits</th>
+                <th>Grade</th>
+                <th>Grade Points</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Galois Theory</td>
+                <td>5</td>
+                <td id="subject1Grade">B+</td>
+                <td id="subject1GradePoint">7</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Lebesgue Measure & Integration</td>
+                <td>5</td>
+                <td id="subject2Grade">B+</td>
+                <td id="subject2GradePoint">7</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Complex Analysis</td>
+                <td>5</td>
+                <td id="subject3Grade">A</td>
+                <td id="subject3GradePoint">8</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Topology</td>
+                <td>5</td>
+                <td id="subject4Grade">B</td>
+                <td id="subject4GradePoint">6</td>
+            </tr>
+        </table>
+
+        <div class="result-text" id="resultText"></div>
+        
+        <div class="details">
+            <p><strong>RESULT:</strong> <span id="result">PROMOTED</span></p>
+            <p><strong>Details of Awards of Grades:</strong></p>
+            <p>Minimum Pass Marks in Each Paper: Theory: 40%, Sem Exam: 40% (Sem Exam + IA)</p>
+            <table>
+                <tr>
+                    <th>Range of Marks</th>
+                    <th>Grade</th>
+                    <th>Grade Point</th>
+                </tr>
+                <tr>
+                    <td>90-100</td>
+                    <td>O</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>75-89</td>
+                    <td>A+</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>65-74</td>
+                    <td>A</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>55-64</td>
+                    <td>B+</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>50-54</td>
+                    <td>B</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>45-49</td>
+                    <td>C</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>40-44</td>
+                    <td>D</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Less Than 40</td>
+                    <td>F</td>
+                    <td>0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="errorMessage" class="error-message" style="display: none;">
+        Details Not Found - Invalid Hall Ticket Number
+    </div>
+</div>
+
+<script>
+    function generateMarksMemo() {
+        var hallTicket = document.getElementById("hallTicket").value;
+        var marksMemo = document.getElementById("marksMemo");
+        var errorMessage = document.getElementById("errorMessage");
+        var resultText = document.getElementById("resultText");
+        var subject1Grade = document.getElementById("subject1Grade");
+        var subject2Grade = document.getElementById("subject2Grade");
+        var subject3Grade = document.getElementById("subject3Grade");
+        var subject4Grade = document.getElementById("subject4Grade");
+        var subject1GradePoint = document.getElementById("subject1GradePoint");
+        var subject2GradePoint = document.getElementById("subject2GradePoint");
+        var subject3GradePoint = document.getElementById("subject3GradePoint");
+        var subject4GradePoint = document.getElementById("subject4GradePoint");
+        var studentName = document.getElementById("studentName");
+        var rollNumber = document.getElementById("rollNumber");
+        var result = document.getElementById("result");
+        
+        // Set the current date dynamically
+        document.getElementById("currentDate").innerText = new Date().toLocaleDateString();
+
+        // Grade points for each grade
+        var gradePoints = {
+            "O": 10,
+            "A+": 9,
+            "A": 8,
+            "B+": 7,
+            "B": 6,
+            "C": 5,
+            "D": 4,
+            "F": 0
+        };
+
+        // List of students with their grades
+        var studentNames = {
+            "1084-24-505-035": "Mudigonda Akhil",
+            "1084-24-505-014": "Vanguri Nikhil",
+            "1084-24-505-022": "Bhimarajula Shylaja",
+            "1084-24-505-021": "Macha Saketh",
+            "1084-24-505-023": "Baddula Divya",
+            "1084-24-505-028": "K Madhu",
+            "1084-24-505-029": "Ammula Poojitha",
+            "1084-24-505-039": "Yedla Vineela",
+            "1084-23-505-050": "Pagila Nagaraju",
+            "1084-24-505-004": "Kokkonda Prashanth"
+        };
+
+        var grades = {
+            "1084-24-505-014": ["O", "A+", "O", "O"],
+            "1084-24-505-035": ["B+", "B+", "A", "B"],
+            "1084-24-505-022": ["O", "A+", "O", "A+"],
+            "1084-24-505-021": ["A", "A+", "B+", "A"],
+            "1084-24-505-023": ["A+", "A", "A", "A+"],
+            "1084-24-505-028": ["A", "B+", "B", "A+"],
+            "1084-24-505-029": ["B", "B+", "A", "A+"],
+            "1084-24-505-039": ["A+", "B+", "A", "A+"],
+            "1084-23-505-050": ["A+", "O", "A", "O"],
+            "1084-24-505-004": ["A", "B+", "O", "A+"]
+        };
+
+        // Check if the hall ticket exists
+        if (studentNames[hallTicket]) {
+            // Show the marks memo
+            marksMemo.style.display = 'block';
+            errorMessage.style.display = 'none';
+
+            studentName.innerText = studentNames[hallTicket];
+            rollNumber.innerText = hallTicket;
+
+            var gradeArray = grades[hallTicket];
+
+            // Set grades and calculate points for each subject
+            subject1Grade.innerText = gradeArray[0];
+            subject2Grade.innerText = gradeArray[1];
+            subject3Grade.innerText = gradeArray[2];
+            subject4Grade.innerText = gradeArray[3];
+
+            subject1GradePoint.innerText = gradePoints[gradeArray[0]];
+            subject2GradePoint.innerText = gradePoints[gradeArray[1]];
+            subject3GradePoint.innerText = gradePoints[gradeArray[2]];
+            subject4GradePoint.innerText = gradePoints[gradeArray[3]];
+
+            // Calculate total points
+            var totalPoints = gradePoints[gradeArray[0]] + gradePoints[gradeArray[1]] + gradePoints[gradeArray[2]] + gradePoints[gradeArray[3]];
+
+            // Normalize to a 10-point scale
+            var totalOutOf10 = (totalPoints / 40) * 10;
+
+            // Display the normalized result
+            resultText.innerText = "Total Grade Points: " + totalOutOf10.toFixed(2);
+
+            // Display result based on total points
+            result.innerText = totalOutOf10 >= 5 ? "PROMOTED" : "NOT PROMOTED";
+
+        } else {
+            marksMemo.style.display = 'none';
+            errorMessage.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
